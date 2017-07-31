@@ -212,7 +212,6 @@ var job = new CronJob({
 
           data.map((item) => {
             pushPoint(item, 'kda', 'kda')
-            console.log(item)
             pushPoint(item, 'gold_per_min', 'gpm')
             pushPoint(item, 'xp_per_min', 'xpm')
             pushPoint(item, 'last_hits', 'lastHits')
