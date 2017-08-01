@@ -81,10 +81,10 @@ function generateToken (steamId) {
   .then(customToken => customToken)
 }
 
-// var job = new CronJob({
-//   cronTime: '00 03 * * * 0-6',
-//   onTick: function () {
-//     var time = Date.now()
+var job = new CronJob({
+  cronTime: '00 49 * * * 0-6',
+  onTick: function () {
+    var time = Date.now()
     console.log('hello 31')
 
     admin.database().ref('users').once('value')
@@ -254,11 +254,11 @@ console.log('rewrite winRate', winRate, 'winN', winN, 'loseN', loseN, 'user', st
 
       })
     })
-//   },
-//   start: false,
-//   timeZone: 'Europe/Minsk'
-// })
-// job.start()
+  },
+  start: false,
+  timeZone: 'Europe/Minsk'
+})
+job.start()
 
 app.post('/charge', (req, res) => {
   const { token, amount, courseId, userId, isVip } = req.body
