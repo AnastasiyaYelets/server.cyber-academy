@@ -81,10 +81,10 @@ function generateToken (steamId) {
   .then(customToken => customToken)
 }
 
-var job = new CronJob({
-  cronTime: '00 15 * * * 0-6',
-  onTick: function () {
-    var time = Date.now()
+// var job = new CronJob({
+//   cronTime: '00 03 * * * 0-6',
+//   onTick: function () {
+//     var time = Date.now()
     console.log('hello 31')
 
     admin.database().ref('users').once('value')
@@ -92,8 +92,9 @@ var job = new CronJob({
       const object = snapshot.val()
       const users = object
       Object.keys(users).forEach(id => users[`${id}`].id = id)
-
-      const promisesUsers = Object.values(users).map(user => {
+console.log(users)
+      const newUsers = Object.keys(users).map((k) => users[k])
+      const promisesUsers = newUsers.map(user => {
         return Promise.props({
           mmr: axios.get(`https://api.opendota.com/api/players/${user.dotaId}`),
           wl:axios.get(`https://api.opendota.com/api/players/${user.dotaId}/wl`),
@@ -253,11 +254,11 @@ console.log('rewrite winRate', winRate, 'winN', winN, 'loseN', loseN, 'user', st
 
       })
     })
-  },
-  start: false,
-  timeZone: 'Europe/Minsk'
-})
-job.start()
+//   },
+//   start: false,
+//   timeZone: 'Europe/Minsk'
+// })
+// job.start()
 
 app.post('/charge', (req, res) => {
   const { token, amount, courseId, userId, isVip } = req.body
