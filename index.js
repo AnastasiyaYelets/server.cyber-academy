@@ -250,12 +250,12 @@ console.log(users)
           if (users[`${steamId}`].statistics.chartStatistic && user.wl.data.lose !== 0 && user.wl.data.win !==0 ) {
             if ((newChartStatistic.winRate.values[(newChartStatistic.winRate.values.length - 1)].winN !== winN) ||
             (newChartStatistic.winRate.values[(newChartStatistic.winRate.values.length - 1)].loseN !== loseN)) {
-              const winRate = Math.round(user.wl.data.lose / (user.wl.data.lose + user.wl.data.win) * 100) / 100
+              const winRate = Math.round(user.wl.data.win / (user.wl.data.lose + user.wl.data.win) * 100) / 100
               newChartStatistic.winRate.values.push({ value: winRate, date: Date.now(), winN, loseN })
 console.log('rewrite winRate', winRate, 'winN', winN, 'loseN', loseN, 'user', steamId, 'date', Date.now())
             }
           } else if (user.wl.data.lose !== 0 && user.wl.data.win !== 0) {
-            const winRate = Math.round(user.wl.data.lose / (user.wl.data.lose + user.wl.data.win) * 100) / 100
+            const winRate = Math.round(user.wl.data.win / (user.wl.data.lose + user.wl.data.win) * 100) / 100
             newChartStatistic.winRate.values.push({ value: winRate, date: Date.now(), winN, loseN })
 console.log('rewrite winRate', winRate, 'winN', winN, 'loseN', loseN, 'user', steamId, 'date', Date.now())
           }
